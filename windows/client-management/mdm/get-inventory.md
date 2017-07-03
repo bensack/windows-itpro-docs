@@ -80,6 +80,12 @@ The following parameters may be specified in the request URI.
 <td><p>Optional. A collection of license types</p></td>
 </tr>
 <tr class="even">
+<td><p>productTypes</p></td>
+<td><p>collection of [ProductType](data-structures-windows-store-for-business.md#productTypes)</p></td>
+<td><p>{applications}</p></td>
+<td><p>Optional. Specifies the product types returned in a single query</p></td>
+</tr>
+<tr class="odd">
 <td><p>maxResults</p></td>
 <td><p>integer-32</p></td>
 <td><p>25</p></td>
