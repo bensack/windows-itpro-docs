@@ -101,6 +101,7 @@ Here are the steps to configure your Azure AD app. For additional information, s
     ![business store management tool](images/businessstoreportalservices11.png)
 
 8.  Specify the **SIGN-ON URL** to your application.
+8.  Specify the **SIGN-ON URL** to your application.
 
     ![business store management tool](images/businessstoreportalservices12.png)
 
@@ -119,14 +120,42 @@ Here are the steps to configure your Azure AD app. For additional information, s
 
 ## Azure AD Authentication for MTS
 
-MTS requires calls to be authenticated using an Azure AD OAuth bearer token. The authorization token is for the Azure AD application representing the MDM component (service/daemon/on-prem instance) within the context of the directory/tenant it will be working on behalf-of.
+MTS requires calls to be authenticated using an Azure AD OAuth bearer token. There are two supported Authorization, based on your tools need you can:
 
-Here are the details for requesting an authorization token:
+- Obtain a token for the Azure AD application representing an MDM component (service/daemon/on-prem instance) within the context of the directory/tenant it will be working on behalf-of.
+- Obtain a user impersonation token for an Azure AD application representing a Client application (Web or Native) within the context of the logged in user and directory/tenant it will be working on behalf-of.
 
--   Login Authority = https:<span></span>//login.windows.net/&lt;TargetTenantId&gt;
--   Resource/audience\* = https:<span></span>//onestore.microsoft.com
--   ClientId = your AAD application client id
--   ClientSecret = your AAD application client secret/key
+Here are the details for requesting an authorization token for :
+
+- Service-to-service access token request:
+
+	-   Login Authority = https:<span></span>//login.windows.net/&lt;TargetTenantId&gt;
+	-   Resource/audience\* = https:<span></span>//onestore.microsoft.com
+	-   ClientId = your AAD application client id
+	-   ClientSecret = your AAD application client secret/key
+
+- Client application to Webservice access token request:
+
+	- Authority = https://login.windows.net/<TargetTenantId>
+	- Resource/audience* = https://onestore.microsoft.com
+	- ClientId = your AAD application client id
+	- ClientSecret = your AAD application client secret/key, if needed 
+	- RequiredResourceAccess. In order for users of the Azure AD application to communicate with Store for Business, the needed Store for Business resources need to be pre-approved. The sample below shows how to add Store for Business resource to the requiredResourceAccess section:
+	
+	``` syntax
+	"requiredResourceAccess": [
+		    {
+		      "resourceAppId": "45a330b1-b1ec-4cc1-9161-9f03992aa49f",
+		      "resourceAccess": [
+		        {
+		          "id": "56cee9a4-2b49-4d48-a5c1-b26a2e48aada",
+		          "type": "Scope"
+		        }
+		      ]
+		    }, 
+	... Other resources your application's may depend on
+	]
+	```
 
 \* The token audience URI is meant as an identifier of the application for which the token is being generated, and it is not a URL for a service endpoint or a web-page.
 
