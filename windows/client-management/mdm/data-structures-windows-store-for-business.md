@@ -27,6 +27,7 @@ Here's the list of data structures used in the Windows Store for Business REST A
 -   [InventoryResultSet](#inventoryresultset)
 -   [InventoryStatus](#inventorystatus)
 -   [LicenseType](#licensetype)
+-   [ProductType](#producttype)
 -   [LocalizedProductDetail](#localizedproductdetail)
 -   [OfflineLicense](#offlinelicense)
 -   [PackageContentInfo](#packagecontentinfo)
@@ -385,6 +386,38 @@ Specifies the properties of the alternate identifier.
 </table>
 
  
+
+## ProductType
+
+
+<table>
+<colgroup>
+<col width="66%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Application</p></td>
+<td><p>Online and Offline licensed Universal Windows Platform applications</p></td>
+</tr>
+<tr class="even">
+<td><p>Subscription</p></td>
+<td><p>Online licensed Subscriptions enable Applications or Services to run and do not contain product binaries</p></td>
+</tr>
+<tr class="odd">
+<td><p>Any</p></td>
+<td><p>All product types currently supported in the Store</p></td>
+</tr>
+</tbody>
+</table>
+
+
 
 ## LocalizedProductDetail
 
